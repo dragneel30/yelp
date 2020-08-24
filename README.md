@@ -2,21 +2,21 @@
 
 # Added features
  
-- waze integration ( if you dont have waze app installed on your phone it will redirect you to playstore )
+- Waze integration ( if you dont have waze app installed on your phone it will redirect you to playstore )
 
-- phone call when you click the mobile number
+- Phone call when you click the mobile number
 
-- google maps integration
-  - displays markers of businesses
-  - marker becomes cluster when you zoom out
-  - business info when you click marker
-  - map will automatically navigated to your location when the app finds your location
-  - detail screen when you click on business info window
+- Google maps integration
+  - Displays markers of businesses
+  - Marker becomes cluster when you zoom out
+  - Business info when you click marker
+  - Map will automatically navigated to your location when the app finds your location
+  - Detail screen when you click on business info window
   
-- detail screen when you click a business on list view
-- list of reviews of people
+- Detail screen when you click a business on list view
+- List of reviews of people
 
 
 # Note: 
 
-not all data have hours of operation, price, contact number, reviews.
+Not all data have hours of operation, price, contact number, reviews.
