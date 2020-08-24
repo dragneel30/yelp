@@ -19,4 +19,4 @@
 
 # Note: 
 
-Not all data have hours of operation, price, contact number, reviews.
+Not all data have hours of operation, price, contact number.
