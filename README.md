@@ -11,5 +11,7 @@
   - marker becomes cluster when you zoom out
   - business info when you click marker
   - map will automatically navigated to your location when the app finds your location
+  - detail view when you click on business info window
   
-- detail view when you click a business on list view. it will also show reviews of people
+- detail view when you click a business on list view
+- list of reviews of people
