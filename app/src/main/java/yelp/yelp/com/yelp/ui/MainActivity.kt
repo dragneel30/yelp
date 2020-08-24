@@ -219,6 +219,15 @@ class MainActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
         mMap.setOnMarkerClickListener(mClusterManager)
         mMap.setOnCameraChangeListener(mClusterManager)
 
+        mMap.setOnInfoWindowClickListener {
+
+            val intent = Intent(this@MainActivity, DetailsActivity::class.java)
+
+            intent.putExtra(KEY_ID, clickedMarker?.business?.id)
+
+            startActivity(intent)
+
+        }
         mClusterManager.setOnClusterClickListener {
 
 
@@ -239,6 +248,7 @@ class MainActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
             }
 
         }
+
 
         mMap.setInfoWindowAdapter(mBusinessInfoWindowAdapter)
 

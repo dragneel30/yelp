@@ -12,8 +12,12 @@ class BusinessClusterRenderer(val context: Context, val map: GoogleMap, clusterM
     override fun onClusterItemRendered(clusterItem: BusinessClusterItem?, marker: Marker?) {
         super.onClusterItemRendered(clusterItem, marker)
 
+
         marker?.tag = clusterItem
     }
+
+
+
 
 
 }
