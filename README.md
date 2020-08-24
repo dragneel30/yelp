@@ -15,3 +15,8 @@
   
 - detail screen when you click a business on list view
 - list of reviews of people
+
+
+# Note: 
+
+not all data have hours of operation, price, contact number, reviews.
