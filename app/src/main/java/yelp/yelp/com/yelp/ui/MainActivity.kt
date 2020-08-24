@@ -86,24 +86,23 @@ class MainActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
 
                 if ( t != null ) {
 
-                    if ( t.businesses.size > 0 ) {
-                        mSearchResult.clear()
-                        mSearchResult.addAll(t!!.businesses)
-
-                        mSearchResultAdapter.notifyDataSetChanged()
-
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(t.region.center))
-                        mMap.clear()
-
-                        for (business in t.businesses) {
-                            mClusterManager.addItem(BusinessClusterItem(business))
-                        }
-
-                        mClusterManager.cluster()
-                    } else {
+                    if ( t.businesses.size == 0 ) {
 
                         Toast.makeText(this@MainActivity, getString(R.string.no_result_err), Toast.LENGTH_LONG).show()
                     }
+                    
+                    mSearchResult.clear()
+                    mSearchResult.addAll(t!!.businesses)
+
+                    mSearchResultAdapter.notifyDataSetChanged()
+
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(t.region.center))
+                    mMap.clear()
+                    for (business in t.businesses) {
+                        mClusterManager.addItem(BusinessClusterItem(business))
+                    }
+
+                    mClusterManager.cluster()
 
 
                 } else {
