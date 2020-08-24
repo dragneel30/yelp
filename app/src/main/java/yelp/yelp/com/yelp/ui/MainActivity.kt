@@ -56,6 +56,7 @@ class MainActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
     private lateinit var mCurrentLocation: Location
     private lateinit var mSearchBar: EditText
     private lateinit var mSortButton: TextView
+//    private lateinit var mOpenFilter: TextView
     private lateinit var mLocationLiveData: LiveData<Location>
 
     private var clickedMarker: BusinessClusterItem? = null
@@ -85,19 +86,24 @@ class MainActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
 
                 if ( t != null ) {
 
-                    mSearchResult.clear()
-                    mSearchResult.addAll(t!!.businesses)
+                    if ( t.businesses.size > 0 ) {
+                        mSearchResult.clear()
+                        mSearchResult.addAll(t!!.businesses)
 
-                    mSearchResultAdapter.notifyDataSetChanged()
+                        mSearchResultAdapter.notifyDataSetChanged()
 
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(t.region.center))
-                    mMap.clear()
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(t.region.center))
+                        mMap.clear()
 
-                    for (business in t.businesses) {
-                        mClusterManager.addItem(BusinessClusterItem(business))
+                        for (business in t.businesses) {
+                            mClusterManager.addItem(BusinessClusterItem(business))
+                        }
+
+                        mClusterManager.cluster()
+                    } else {
+
+                        Toast.makeText(this@MainActivity, getString(R.string.no_result_err), Toast.LENGTH_LONG).show()
                     }
-
-                    mClusterManager.cluster()
 
 
                 } else {
@@ -267,6 +273,8 @@ class MainActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
         }
     }
 
+
+
     // open sort option dialog
     fun openSortDialog() {
 
@@ -349,12 +357,14 @@ class MainActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
         mViewToggleImageView = findViewById(R.id.viewToggleImageView)
         mSearchBar = findViewById(R.id.searchBar)
         mLoading = findViewById(R.id.loading)
+//        mOpenFilter = findViewById(R.id.openFilter)
         mListViewRoot = findViewById(R.id.listViewRoot)
         mSortButton = findViewById(R.id.sortButton)
         mHomeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         mLocationViewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
         mViewToggleImageView.setOnClickListener(this)
         mSortButton.setOnClickListener(this)
+//        mOpenFilter.setOnClickListener(this)
         mSearchBar.setOnKeyListener(onSearchBarEdited)
         mLoading.indeterminateDrawable = DoubleBounce()
     }

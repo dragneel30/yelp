@@ -27,6 +27,7 @@
     <string name="locating_message">We are currently locating you please wait</string>
     <string name="locate_suc_message">We have located you</string>
     <string name="api_err">Theres an error in the server please try again</string>
+    <string name="no_result_err">No result found</string>
 
 
 </resources>

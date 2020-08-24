@@ -19,7 +19,6 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private val mSearchResult = MutableLiveData<SearchResult>()
-    private val mSearchText = MutableLiveData<String>()
     private val mIsLoading = MutableLiveData<Boolean>()
 
     fun getIsLoading(): LiveData<Boolean> {

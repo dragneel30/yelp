@@ -75,6 +75,19 @@
                         android:layout_marginHorizontal="10dp"
                 />
 
+                <!--<TextView-->
+
+                        <!--android:paddingLeft="2dp"-->
+                        <!--android:textColor="#ffff"-->
+                        <!--android:background="@drawable/text_enabled"-->
+                        <!--android:gravity="center"-->
+                        <!--android:height="40dp"-->
+                        <!--android:id="@+id/openFilter"-->
+                        <!--android:layout_width="100dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:text="Open now only"-->
+                        <!--android:layout_marginHorizontal="10dp"-->
+                <!--/>-->
 
             </LinearLayout>
 
