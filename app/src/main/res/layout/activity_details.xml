@@ -96,6 +96,18 @@
                                     android:layout_width="0dp" android:layout_height="wrap_content"/>
 
                         </LinearLayout>
+                        <TextView
+
+                            android:textColor="@color/hyperlink"
+                            android:textStyle="italic"
+                            android:id="@+id/wazeNav"
+                            android:text="Open waze"
+                            android:paddingHorizontal="10dp"
+                            android:textSize="16sp"
+                            android:gravity="right"
+
+                            android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 

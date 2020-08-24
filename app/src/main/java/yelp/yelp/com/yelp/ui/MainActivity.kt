@@ -1,6 +1,7 @@
 package yelp.yelp.com.yelp.ui
 
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.location.Location
 import android.net.Uri
@@ -73,6 +74,8 @@ class MainActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
         ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CALL_PHONE),PermissionCode.CALL.code)
 
         Toast.makeText(this, getString(R.string.locating_message), Toast.LENGTH_LONG).show()
+
+
     }
 
     override fun initObservers() {
@@ -126,6 +129,7 @@ class MainActivity : BaseActivity(), OnMapReadyCallback, View.OnClickListener {
             }
 
         })
+
 
     }
     override fun setLoading(isLoading: Boolean) {

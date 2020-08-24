@@ -1,6 +1,7 @@
 package yelp.yelp.com.yelp.ui
 
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Paint
 import android.net.Uri
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.bumptech.glide.Glide
 import com.github.ybq.android.spinkit.style.DoubleBounce
+import kotlinx.android.synthetic.main.activity_details.*
 import yelp.yelp.com.yelp.R
 import yelp.yelp.com.yelp.adapters.ReviewsAdapter
 import yelp.yelp.com.yelp.models.Business
@@ -26,13 +28,16 @@ import yelp.yelp.com.yelp.utils.Constants.KEY_ID
 import yelp.yelp.com.yelp.utils.DateUtils
 import yelp.yelp.com.yelp.utils.PermissionCode
 import yelp.yelp.com.yelp.viewmodels.BusinessViewModel
+import yelp.yelp.com.yelp.viewmodels.LocationViewModel
 import yelp.yelp.com.yelp.viewmodels.ReviewsViewModel
 
 class DetailsActivity : BaseActivity(), View.OnClickListener {
 
     lateinit var mId: String
+    lateinit var mBusiness: Business
     lateinit var mBusinessName: TextView
     lateinit var mOpeningHoursLabel: TextView
+    lateinit var mWazeNav: TextView
     lateinit var mReviewLabel: TextView
     lateinit var mReviewList: RecyclerView
     lateinit var mBusinessPhoto: ImageView
@@ -100,6 +105,8 @@ class DetailsActivity : BaseActivity(), View.OnClickListener {
         mDetailsViewModel.getBusiness().observe(this, object : Observer<Business> {
             override fun onChanged(business: Business) {
 
+                mBusiness = business
+
                 if ( business != null ) {
                     for ((index, photo_url) in business.photos.withIndex()) {
 
@@ -123,7 +130,7 @@ class DetailsActivity : BaseActivity(), View.OnClickListener {
                     mContact.text = business.display_phone
                     mCategories.text = business.categories.joinToString(separator = ", ") { it.title }
 
-                    initHours(business)
+                    initHours()
                 } else {
                     Toast.makeText(this@DetailsActivity, getString(R.string.api_err), Toast.LENGTH_LONG).show()
                 }
@@ -150,7 +157,10 @@ class DetailsActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.contact -> {
-                initiatePhoneCall(mContact.text.toString())
+                initiatePhoneCall()
+            }
+            R.id.wazeNav -> {
+                navToWaze()
             }
         }
     }
@@ -172,6 +182,7 @@ class DetailsActivity : BaseActivity(), View.OnClickListener {
         mPhotos.add(findViewById(R.id.image2))
         mPhotos.add(findViewById(R.id.image3))
         mOpeningHoursLabel = findViewById(R.id.openingHoursLabel)
+        mWazeNav = findViewById(R.id.wazeNav)
         mCategories = findViewById(R.id.categories)
         mViewParent = findViewById(R.id.viewParent)
         mContact = findViewById(R.id.contact)
@@ -181,15 +192,17 @@ class DetailsActivity : BaseActivity(), View.OnClickListener {
         mDetailsViewModel = ViewModelProviders.of(this).get(BusinessViewModel::class.java)
         mReviewsViewModel = ViewModelProviders.of(this).get(ReviewsViewModel::class.java)
         mContact.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG)
+        mWazeNav.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG)
         mContact.setOnClickListener(this)
+        mWazeNav.setOnClickListener(this)
         mLoading.indeterminateDrawable = DoubleBounce()
     }
 
     @SuppressLint("MissingPermission")
-    fun initiatePhoneCall(num: String) {
+    fun initiatePhoneCall() {
 
         try {
-            val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + num))
+            val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mBusiness.display_phone))
             startActivity(intent)
 
         } catch (e: Exception) {
@@ -201,10 +214,10 @@ class DetailsActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    fun initHours(business: Business) {
+    fun initHours() {
 
-        if (business.hours != null && business.hours.size > 0) {
-            val hours = business.hours[0]
+        if (mBusiness.hours != null && mBusiness.hours.size > 0) {
+            val hours = mBusiness.hours[0]
 
             for (x in 0 until 7) {
                 try {
@@ -223,6 +236,19 @@ class DetailsActivity : BaseActivity(), View.OnClickListener {
             mOpeningHoursRoot.visibility = View.GONE
         }
 
+    }
+
+    fun navToWaze() {
+        try {
+
+            val uri = "waze://?ll=${mBusiness.coordinates.latitude}, ${mBusiness.coordinates.longitude}&navigate=yes"
+            var intent =  Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+            startActivity(intent);
+        } catch (ex: ActivityNotFoundException) {
+            // If Waze is not installed, open it in Google Play:
+            var intent  =  Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.waze"));
+            startActivity(intent);
+        }
     }
 
 }
