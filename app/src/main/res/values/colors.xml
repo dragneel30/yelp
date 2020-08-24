@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#44b330</color>
+    <color name="colorPrimaryDark">#44b330</color>
+    <color name="colorAccent">#44b330</color>
+    <color name="status_closed">#FF0000</color>
+    <color name="status_open">#44b330</color>
+    <color name="hyperlink">#0000EE</color>
+</resources>

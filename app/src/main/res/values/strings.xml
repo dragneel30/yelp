@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">yelp</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="yelp_token">Bearer
+        qaONOl3DnFJ8MS_Mh-e1z3DeX-mhTtATWYNucf3NjmUzrE3szlrWHi9O255yVSR1_DS2nhXhac-lIoO43EL95-qAM_CRDKYTn5jyd6gEfwwrM72-7nTyJZLV05o-X3Yx
+    </string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--<string-array name="test">as</string-array>-->
+
+    <string-array name="sort_options">
+
+        <item>Sort by Distance</item>
+        <item>Sort by Ratings</item>
+
+    </string-array>
+
+    <string name ="open_now">Open Now</string>
+    <string name ="closed">Close</string>
+    <string name="cant_locate_err">We can\'t locate you at this time</string>
+    <string name="sort_option_title">Options</string>
+    <string name="no_result_err">No result found</string>
+    <string name="opening_hours_err">Opening hours not specified</string>
+    <string name="locating_message">We are currently locating you please wait</string>
+    <string name="locate_suc_message">We have located you</string>
+    <string name="api_err">Theres an error in the server please try again</string>
+
+
+</resources>
