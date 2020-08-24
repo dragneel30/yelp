@@ -1,8 +1,8 @@
 # yelp
 
 # Added features
-
-- waze integration
+ 
+- waze integration ( if you dont have waze it will redirect you to playstore )
 
 - phone call when you click the mobile number
 
