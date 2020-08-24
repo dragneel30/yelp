@@ -2,7 +2,7 @@
 
 # Added features
  
-- waze integration ( if you dont have waze it will redirect you to playstore )
+- waze integration ( if you dont have waze app installed on your phone it will redirect you to playstore )
 
 - phone call when you click the mobile number
 
